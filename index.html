@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YOUR NAME | Data Analyst Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0e17; --bg-alt:#0d1220; --card:#111826; --border:#1e293b;
+    --text:#e5eaf2; --text-dim:#8b98ad; --cyan:#22d3ee; --teal:#2dd4bf;
+    --orange:#fb923c; --radius:10px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px;}
+  section{padding:90px 0;}
+  h2{font-size:2rem;font-weight:800;text-align:center;}
+  h2 span{color:var(--cyan);}
+  .lead{text-align:center;color:var(--text-dim);max-width:520px;margin:10px auto 50px;font-size:.95rem;}
+
+  /* NAV */
+  header{position:sticky;top:0;z-index:50;background:rgba(10,14,23,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
+  nav{max-width:1100px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;}
+  .logo{font-family:'JetBrains Mono',monospace;color:var(--cyan);font-weight:600;font-size:1.1rem;}
+  .nav-links{display:flex;gap:28px;font-size:.9rem;color:var(--text-dim);}
+  .nav-links a:hover{color:var(--cyan);}
+  .cta-btn{background:var(--cyan);color:#04222b;padding:9px 20px;border-radius:20px;font-weight:600;font-size:.85rem;border:none;cursor:pointer;}
+  @media(max-width:820px){.nav-links{display:none;}}
+
+  /* HERO */
+  .hero{position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden;}
+  .hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.55;}
+  .hero-grid{position:relative;z-index:1;display:flex;gap:60px;align-items:center;flex-wrap:wrap;}
+  .hero-text{flex:1;min-width:300px;}
+  .hi{color:var(--cyan);font-size:.95rem;font-weight:600;}
+  .hero-text h1{font-size:2.8rem;font-weight:800;margin:6px 0 14px;}
+  .hero-text h1 .accent{color:var(--teal);}
+  .role-line{font-size:1.15rem;color:var(--cyan);font-weight:600;min-height:1.6rem;margin-bottom:10px;}
+  .role-line::after{content:'|';animation:blink 1s step-end infinite;}
+  @keyframes blink{50%{opacity:0;}}
+  .location{color:var(--text-dim);font-size:.85rem;margin-bottom:14px;}
+  .bio{color:var(--text-dim);max-width:460px;font-size:.95rem;margin-bottom:20px;}
+  .socials{display:flex;gap:12px;margin-bottom:24px;}
+  .socials a{width:34px;height:34px;border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--text-dim);}
+  .hero-actions{display:flex;gap:12px;}
+  .btn-primary{background:var(--cyan);color:#04222b;padding:11px 22px;border-radius:24px;font-weight:600;font-size:.9rem;}
+  .btn-outline{border:1px solid var(--border);padding:11px 22px;border-radius:24px;font-weight:600;font-size:.9rem;}
+  .hero-photo{position:relative;flex-shrink:0;}
+  .hero-photo img{width:220px;height:260px;object-fit:cover;border-radius:16px;border:1px solid var(--border);}
+  .badge{position:absolute;bottom:-14px;right:-10px;background:var(--bg-alt);border:1px solid var(--border);padding:6px 12px;border-radius:20px;font-size:.75rem;display:flex;align-items:center;gap:6px;}
+  .badge::before{content:'';width:7px;height:7px;background:var(--teal);border-radius:50%;}
+
+  /* ABOUT */
+  #about{background:var(--bg-alt);}
+  .about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:24px;}
+  .about-text{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px;font-size:.92rem;color:var(--text-dim);}
+  .about-text strong{color:var(--cyan);font-weight:600;}
+  .info-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .info-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;}
+  .info-card .ic{color:var(--cyan);font-size:1.2rem;margin-bottom:8px;}
+  .info-card h4{font-size:.88rem;margin-bottom:4px;}
+  .info-card p{font-size:.78rem;color:var(--text-dim);}
+  @media(max-width:760px){.about-grid{grid-template-columns:1fr;}}
+
+  /* SKILLS RADAR */
+  .radar-wrap{display:flex;justify-content:center;}
+
+  /* EXPERIENCE TIMELINE */
+  .timeline{position:relative;max-width:780px;margin:0 auto;padding-left:26px;border-left:2px solid var(--border);}
+  .tl-item{position:relative;margin-bottom:26px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;}
+  .tl-item::before{content:'';position:absolute;left:-33px;top:24px;width:12px;height:12px;background:var(--cyan);border-radius:50%;border:3px solid var(--bg);}
+  .tl-item h4{font-size:1rem;}
+  .tl-item .org{color:var(--cyan);font-size:.85rem;margin:2px 0 6px;}
+  .tl-item .meta{color:var(--text-dim);font-size:.78rem;margin-bottom:10px;}
+  .tl-item p{color:var(--text-dim);font-size:.88rem;}
+  .tl-toggle{color:var(--teal);font-size:.8rem;margin-top:10px;cursor:pointer;display:inline-block;}
+  .tl-details{max-height:0;overflow:hidden;transition:max-height .3s ease;font-size:.82rem;color:var(--text-dim);}
+  .tl-details ul{margin:10px 0 0 18px;}
+
+  /* PROJECTS */
+  .filters{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:34px;}
+  .filter-btn{border:1px solid var(--border);background:transparent;color:var(--text-dim);padding:8px 16px;border-radius:20px;font-size:.82rem;cursor:pointer;}
+  .filter-btn.active{background:var(--cyan);color:#04222b;border-color:var(--cyan);}
+  .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .proj-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+  .proj-thumb{height:130px;background:linear-gradient(135deg,#1e293b,#0f172a);}
+  .proj-body{padding:16px;}
+  .proj-body h4{font-size:.95rem;margin-bottom:6px;}
+  .proj-body p{font-size:.8rem;color:var(--text-dim);margin-bottom:10px;}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+  .tag{background:var(--bg-alt);border:1px solid var(--border);font-size:.68rem;padding:3px 8px;border-radius:6px;color:var(--text-dim);}
+  .proj-links{display:flex;gap:16px;font-size:.78rem;color:var(--cyan);}
+  @media(max-width:820px){.proj-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:560px){.proj-grid{grid-template-columns:1fr;}}
+
+  /* GRID CARDS (education/certs) */
+  .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .plain-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;}
+  .plain-card h4{font-size:.92rem;}
+  .plain-card .org{color:var(--cyan);font-size:.8rem;margin:2px 0 8px;}
+  .plain-card ul{margin-left:16px;color:var(--text-dim);font-size:.78rem;}
+  @media(max-width:820px){.card-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:560px){.card-grid{grid-template-columns:1fr;}}
+
+  /* CONTACT */
+  .contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:24px;}
+  .contact-info{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;}
+  .contact-row{display:flex;gap:12px;align-items:center;margin-bottom:16px;font-size:.88rem;}
+  .contact-row .ic{color:var(--cyan);}
+  form{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;display:grid;gap:12px;}
+  input,textarea{background:var(--bg-alt);border:1px solid var(--border);border-radius:6px;padding:10px 12px;color:var(--text);font-family:inherit;font-size:.88rem;}
+  textarea{resize:vertical;min-height:90px;}
+  @media(max-width:760px){.contact-grid{grid-template-columns:1fr;}}
+
+  footer{border-top:1px solid var(--border);padding:30px 0;text-align:center;color:var(--text-dim);font-size:.8rem;}
+  footer .f-links{display:flex;gap:18px;justify-content:center;margin-bottom:10px;flex-wrap:wrap;}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">{  AmrG }</div>
+    <div class="nav-links">
+      <a href="#about">About</a><a href="#skills">Skills</a><a href="#experience">Experience</a>
+      <a href="#projects">Projects</a><a href="#education">Education</a><a href="#contact">Contact</a>
+    </div>
+    <button class="cta-btn">Get In Touch</button>
+  </nav>
+</header>
+
+<section class="hero">
+  <canvas id="bgCanvas"></canvas>
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <div class="hi">Hi, I am</div>
+<h1>Amr <span class="accent">Galal</span></h1>
+      <div class="role-line" id="roleLine"></div>
+      <div class="location">Based in Cairo, Egypt</div>
+      <p class="bio">I transform data into strategic insights through modern dashboards and business intelligence solutions. My work focuses on data analysis, visualization, and reporting using Power BI, SQL, and Python to deliver impactful, decision-driven analytics experiences..</p>
+<div class="socials">
+  <a href="https://github.com/AmrGalal" target="_blank" title="GitHub">GH</a>
+<a href="#" onclick="navigator.clipboard.writeText('Amrrgallall@gmail.com'); this.textContent='Copied!'; setTimeout(()=>this.textContent='@',1500); return false;" title="Copy Email">@</a>
+  <a href="mailto:Amrrgallall@gmail.com" title="Email">@</a>
+  <a href="https://wa.me/201140401609" target="_blank" title="WhatsApp">WA</a>
+</div>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#projects">View Projects →</a>
+        <a class="btn-outline" href="#">Resume ↓</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <<img src="Amr Galal.jpeg" alt="Your photo">">
+      <div class="badge">Open to Work</div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <h2>About <span>Me</span></h2>
+    <p class="lead">Short one-line tagline about your focus area.</p>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Write your background story here: your learning journey, what field you specialize in
+        (e.g. <strong>Data Analysis and Business Intelligence</strong>), and the tools you use.</p><br>
+        <p>Add a second paragraph about what motivates you and how you approach problems.</p>
+      </div>
+      <div class="info-cards" id="infoCards"></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <h2>Skills & <span>Expertise</span></h2>
+    <p class="lead">Technologies you've worked with in real projects.</p>
+    <div class="radar-wrap"><svg id="radar" width="480" height="480"></svg></div>
+  </div>
+</section>
+
+<section id="experience" style="background:var(--bg-alt);">
+  <div class="wrap">
+    <h2>Professional <span>Journey</span></h2>
+    <p class="lead">Your career and training path so far.</p>
+    <div class="timeline" id="timeline"></div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <h2>Featured <span>Projects</span></h2>
+    <p class="lead">Real projects with real datasets.</p>
+    <div class="filters" id="filters"></div>
+    <div class="proj-grid" id="projGrid"></div>
+  </div>
+</section>
+
+<section id="education" style="background:var(--bg-alt);">
+  <div class="wrap">
+    <h2>Education</h2>
+    <p class="lead">Academic foundation and continuous learning.</p>
+    <div class="card-grid" id="eduGrid"></div>
+  </div>
+</section>
+
+<section id="certifications">
+  <div class="wrap">
+    <h2>Professional <span>Certifications</span></h2>
+    <p class="lead">Credentials that back up your skills.</p>
+    <div class="card-grid" id="certGrid"></div>
+  </div>
+</section>
+
+<section id="contact" style="background:var(--bg-alt);">
+  <div class="wrap">
+    <h2>Let's <span>Connect</span></h2>
+    <p class="lead">Open to opportunities — say hello.</p>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-row"><span class="ic">✉</span> your.email@example.com</div>
+        <div class="contact-row"><span class="ic">☎</span> +20 1XX XXX XXXX</div>
+        <div class="contact-row"><span class="ic">📍</span> Your City, Country</div>
+      </div>
+      <form onsubmit="event.preventDefault();alert('Wire this up to a form service like Formspree or your backend.');">
+        <input placeholder="Your name">
+        <input placeholder="your@email.com">
+        <input placeholder="Subject">
+        <textarea placeholder="Tell me about your project..."></textarea>
+        <button class="btn-primary" style="border:none;cursor:pointer;">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-links">
+    <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a>
+    <a href="#education">Education</a><a href="#contact">Contact</a>
+  </div>
+  © 2026 YOUR NAME. All rights reserved.
+</footer>
+
+<script>
+/* ---------- EDIT YOUR DATA BELOW ---------- */
+
+const roles = ["Data Analyst", "BI Developer", "Problem Solver", "Business Intelligence Analyst"];
+const infoCardsData = [
+  {icon:"📊",title:"Business Intelligence",desc:"Building dashboards that turn raw data into decisions."},
+  {icon:"📈",title:"Power BI Dashboards",desc:"Designing interactive, visual reports."},
+  {icon:"🗄",title:"SQL & Data Modeling",desc:"Managing and modeling structured data."},
+  {icon:"🧩",title:"Problem Solver",desc:"Breaking complex problems into scalable solutions."},
+  {icon:"📉",title:"Data Visualization",desc:"Communicating data clearly and effectively."},
+  {icon:"🤝",title:"Collaboration",desc:"Working well across cross-functional teams."}
+];
+const skillsData = [
+  {label:"Power BI",value:9},{label:"Statistics",value:7},{label:"Pandas",value:8},
+  {label:"Excel",value:8},{label:"Python",value:8},{label:"Tableau",value:7},
+  {label:"DAX",value:7},{label:"NumPy",value:7},{label:"Power Query",value:7},
+  {label:"Looker Studio",value:6},{label:"Data Visualization",value:8},
+  {label:"SQL",value:9},{label:"ETL",value:6},{label:"Data Cleaning",value:8},
+  {label:"Business Analysis",value:7}
+];
+const timelineData = [
+  {title:"Your Current Role",org:"Company / Institute",meta:"Jan 2026 – Present · City",
+   desc:"One-line summary of what you focus on in this role.",
+   achievements:["Achievement one","Achievement two","Skill used: SQL, Power BI"]},
+  {title:"Previous Role / Training",org:"Organization",meta:"Feb 2025 – Aug 2025 · City",
+   desc:"Summary of what you learned or delivered.",
+   achievements:["Achievement one","Achievement two"]},
+  {title:"Certification / Bootcamp",org:"Provider",meta:"Nov 2024 – May 2025 · City",
+   desc:"Summary of the program and what it covered.",
+   achievements:["Skill one","Skill two"]}
+];
+const projectsData = [
+  {title:"Project Title One",desc:"Short description of the problem and what the dashboard/analysis delivers.",
+   tags:["Power BI","DAX","SQL"],cats:["powerbi"]},
+  {title:"Project Title Two",desc:"Short description of the second project.",
+   tags:["Tableau","Data Visualization"],cats:["tableau"]},
+  {title:"Project Title Three",desc:"Short description of the third project.",
+   tags:["Python","Pandas"],cats:["python"]},
+  {title:"Project Title Four",desc:"Fourth project description.",tags:["SQL","ETL"],cats:["sql"]},
+  {title:"Project Title Five",desc:"Fifth project description.",tags:["Power BI"],cats:["powerbi"]},
+  {title:"Project Title Six",desc:"Sixth project description.",tags:["Web Dev"],cats:["web"]}
+];
+const filterCats = [
+  {id:"all",label:"All Projects"},{id:"powerbi",label:"Power BI"},{id:"tableau",label:"Tableau"},
+  {id:"sql",label:"SQL"},{id:"python",label:"Python"},{id:"web",label:"Web Development"}
+];
+const eduData = [
+  {title:"Your Degree / Diploma",org:"University",meta:"2026 – Present · City",
+   points:["Key topic one","Key topic two","Key topic three"]},
+  {title:"Previous Degree",org:"University",meta:"2018 – 2022 · City",
+   points:["Key topic one","Key topic two"]}
+];
+const certData = [
+  {icon:"🏅",title:"Certificate Name",org:"Issuer"},
+  {icon:"📘",title:"Certificate Name",org:"Issuer"},
+  {icon:"🎓",title:"Certificate Name",org:"Issuer"}
+];
+
+/* ---------- RENDER (no need to edit below) ---------- */
+
+// Rotating role text
+let ri=0, ci=0, deleting=false;
+const roleEl=document.getElementById('roleLine');
+function typeLoop(){
+  const word=roles[ri];
+  roleEl.textContent = deleting ? word.slice(0,ci--) : word.slice(0,ci++);
+  if(!deleting && ci>word.length){deleting=true; setTimeout(typeLoop,1200); return;}
+  if(deleting && ci<0){deleting=false; ri=(ri+1)%roles.length; ci=0;}
+  setTimeout(typeLoop, deleting?40:90);
+}
+typeLoop();
+
+// Info cards
+document.getElementById('infoCards').innerHTML = infoCardsData.map(c=>`
+  <div class="info-card"><div class="ic">${c.icon}</div><h4>${c.title}</h4><p>${c.desc}</p></div>`).join('');
+
+// Radar chart (pure SVG)
+function drawRadar(){
+  const svg=document.getElementById('radar'), n=skillsData.length, cx=240, cy=240, R=170;
+  const angle=i=> (Math.PI*2*i/n) - Math.PI/2;
+  let rings='', axes='', points=[], labels='';
+  for(let r=1;r<=4;r++){
+    let pts=[];
+    for(let i=0;i<n;i++){const a=angle(i);pts.push(`${cx+Math.cos(a)*R*r/4},${cy+Math.sin(a)*R*r/4}`);}
+    rings+=`<polygon points="${pts.join(' ')}" fill="none" stroke="#1e293b" stroke-width="1"/>`;
+  }
+  skillsData.forEach((s,i)=>{
+    const a=angle(i);
+    axes+=`<line x1="${cx}" y1="${cy}" x2="${cx+Math.cos(a)*R}" y2="${cy+Math.sin(a)*R}" stroke="#1e293b"/>`;
+    const val=R*s.value/10;
+    points.push(`${cx+Math.cos(a)*val},${cy+Math.sin(a)*val}`);
+    const lx=cx+Math.cos(a)*(R+34), ly=cy+Math.sin(a)*(R+34);
+    labels+=`<text x="${lx}" y="${ly}" fill="#8b98ad" font-size="10" text-anchor="middle" dominant-baseline="middle">${s.label}</text>`;
+  });
+  svg.innerHTML = rings+axes+
+    `<polygon points="${points.join(' ')}" fill="rgba(34,211,238,0.18)" stroke="#22d3ee" stroke-width="2"/>`
+    +labels;
+}
+drawRadar();
+
+// Timeline
+document.getElementById('timeline').innerHTML = timelineData.map((t,i)=>`
+  <div class="tl-item">
+    <h4>${t.title}</h4><div class="org">${t.org}</div><div class="meta">${t.meta}</div>
+    <p>${t.desc}</p>
+    <span class="tl-toggle" onclick="const d=document.getElementById('tld${i}');d.style.maxHeight=d.style.maxHeight?'':'200px';">Key Achievements & Skills ▾</span>
+    <div class="tl-details" id="tld${i}"><ul>${t.achievements.map(a=>`<li>${a}</li>`).join('')}</ul></div>
+  </div>`).join('');
+
+// Projects + filters
+function renderProjects(filter){
+  const grid=document.getElementById('projGrid');
+  const list = filter==='all' ? projectsData : projectsData.filter(p=>p.cats.includes(filter));
+  grid.innerHTML = list.map(p=>`
+    <div class="proj-card">
+      <div class="proj-thumb"></div>
+      <div class="proj-body">
+        <h4>${p.title}</h4><p>${p.desc}</p>
+        <div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+        <div class="proj-links"><a href="#">▤ View Code</a><a href="#">↗ Live Demo</a></div>
+      </div>
+    </div>`).join('');
+}
+document.getElementById('filters').innerHTML = filterCats.map((f,i)=>
+  `<button class="filter-btn ${i===0?'active':''}" data-id="${f.id}">${f.label}</button>`).join('');
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active'); renderProjects(btn.dataset.id);
+  };
+});
+renderProjects('all');
+
+// Education
+document.getElementById('eduGrid').innerHTML = eduData.map(e=>`
+  <div class="plain-card"><h4>${e.title}</h4><div class="org">${e.org}</div>
+  <div style="color:var(--text-dim);font-size:.78rem;margin-bottom:8px;">${e.meta}</div>
+  <ul>${e.points.map(p=>`<li>${p}</li>`).join('')}</ul></div>`).join('');
+
+// Certifications
+document.getElementById('certGrid').innerHTML = certData.map(c=>`
+  <div class="plain-card"><div style="font-size:1.3rem;">${c.icon}</div>
+  <h4 style="margin-top:8px;">${c.title}</h4><div class="org">${c.org}</div></div>`).join('');
+
+// Background animated wave/particles
+const canvas=document.getElementById('bgCanvas'), ctx=canvas.getContext('2d');
+function resize(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;}
+resize(); window.addEventListener('resize',resize);
+const particles = Array.from({length:60},()=>({
+  x:Math.random(), y:Math.random(), r:Math.random()*2+0.5, s:Math.random()*0.3+0.05
+}));
+let t=0;
+function animate(){
+  t+=0.01;
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.strokeStyle='rgba(45,212,191,0.25)';
+  ctx.beginPath();
+  for(let x=0;x<=canvas.width;x+=8){
+    const y=canvas.height*0.72 + Math.sin(x*0.01+t)*24 + Math.sin(x*0.005+t*0.6)*18;
+    x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+  }
+  ctx.stroke();
+  particles.forEach(p=>{
+    const px=p.x*canvas.width, py=(p.y*canvas.height + t*20*p.s)%canvas.height;
+    ctx.fillStyle='rgba(34,211,238,0.5)';
+    ctx.beginPath(); ctx.arc(px,py,p.r,0,7); ctx.fill();
+  });
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+</body>
+</html>
