@@ -165,7 +165,7 @@
     <h2>About <span>Me</span></h2>
     <p class="lead">Turning data into meaningful business decisions</p>
     <div class="about-grid">
-      <div class="about-text">
+<div class="about-text">
   <p>Turning Data Into Decisions.</p><br>
   <p>I'm a Data Analyst focused on transforming raw data into meaningful insights that help
   businesses understand performance, identify opportunities, and make better decisions.
@@ -174,7 +174,18 @@
   <p>I approach every dataset with three questions:<br>
   <strong>What happened? → Why did it happen? → What can we do next?</strong></p><br>
   <p>Focus: Data Analysis | Business Intelligence | Power BI | SQL | Excel | Data Visualization</p><br>
-  <p>[هنا هنحط فقرة بديلة بعد ما تردّ على السؤال اللي فوق]</p>
+  <p>What drives me is solving problems that don't have an obvious first step. I enjoy breaking
+  a messy dataset down, testing assumptions, and building toward a solution that's both simple
+  and reliable.</p><br>
+  <p>With <strong>5 years of experience</strong> in the call center industry as a
+  <strong>Senior Training and Development Specialist</strong>, I've been responsible for
+  producing the company's performance reports — turning raw operational data into insights
+  that shaped training decisions and improved team performance. This experience taught me how
+  to translate numbers into actions that actually matter to a business, long before I formally
+  studied data analysis.</p><br>
+  <p>I'm a continuous learner at heart, always looking to sharpen my analytical skills and stay
+  close to real-world data problems. I believe well-designed data systems can genuinely change
+  how teams make decisions.</p>
 </div>
       <div class="info-cards" id="infoCards"></div>
     </div>
@@ -274,13 +285,25 @@ const  skillsData = [
 const timelineData = [
   {title:"Data Analysis & BI Track",org:"DEPI (Digital Egypt Pioneers Initiative)",meta:"2026 · Egypt",
    desc:"Practical training in data analysis and business intelligence, covering dashboarding, reporting, and data-driven decision making.",
-   achievements:["Data analysis fundamentals","Business Intelligence tools","Dashboard building"]},
+   achievements:[
+     "Built end-to-end BI dashboards from raw data to executive-ready reports",
+     "Applied data modeling and DAX for accurate, scalable calculations",
+     "Practiced translating business questions into analytical solutions"
+   ]},
   {title:"Data Analysis Fundamentals",org:"DataCamp",meta:"2025",
    desc:"Foundational track covering data analysis concepts, data cleaning, and exploratory analysis.",
-   achievements:["Data cleaning & wrangling","Exploratory data analysis","SQL fundamentals"]},
+   achievements:[
+     "Cleaned and structured messy real-world datasets for analysis",
+     "Performed exploratory data analysis (EDA) to uncover patterns and trends",
+     "Wrote SQL queries to extract and aggregate data from relational databases"
+   ]},
   {title:"Data Analyst Professional Certificate",org:"Udemy",meta:"2025",
    desc:"Professional certificate covering the full data analysis workflow from raw data to actionable insights.",
-   achievements:["Excel & Power BI","SQL querying","Data visualization"]}
+   achievements:[
+     "Designed interactive Power BI dashboards for business reporting",
+     "Used Power Query to automate data cleaning and transformation steps",
+     "Delivered insights that support faster, evidence-based decisions"
+   ]}
 ];
 const projectsData = [
   {title:"Project Title One",desc:"Short description of the problem and what the dashboard/analysis delivers.",
@@ -331,7 +354,7 @@ document.getElementById('infoCards').innerHTML = infoCardsData.map(c=>`
 function drawRadar(){
   const svg=document.getElementById('radar'), n=skillsData.length, cx=240, cy=240, R=170;
   const angle=i=> (Math.PI*2*i/n) - Math.PI/2;
-  let rings='', axes='', points=[], labels='';
+  let rings='', axes='', points=[], labels='', dots='';
   for(let r=1;r<=4;r++){
     let pts=[];
     for(let i=0;i<n;i++){const a=angle(i);pts.push(`${cx+Math.cos(a)*R*r/4},${cy+Math.sin(a)*R*r/4}`);}
@@ -341,14 +364,16 @@ function drawRadar(){
     const a=angle(i);
     axes+=`<line x1="${cx}" y1="${cy}" x2="${cx+Math.cos(a)*R}" y2="${cy+Math.sin(a)*R}" stroke="#1e293b"/>`;
     const val=R*s.value/100;
-    points.push(`${cx+Math.cos(a)*val},${cy+Math.sin(a)*val}`);
+    const px=cx+Math.cos(a)*val, py=cy+Math.sin(a)*val;
+    points.push(`${px},${py}`);
+    dots+=`<circle cx="${px}" cy="${py}" r="4" fill="#22d3ee"><title>${s.label}: ${s.value}%</title></circle>`;
     const lx=cx+Math.cos(a)*(R+34), ly=cy+Math.sin(a)*(R+34);
     labels+=`<text x="${lx}" y="${ly}" fill="#8b98ad" font-size="10" text-anchor="middle" dominant-baseline="middle">${s.label}</text>`;
   });
   svg.innerHTML = rings+axes+
     `<polygon points="${points.join(' ')}" fill="rgba(34,211,238,0.18)" stroke="#22d3ee" stroke-width="2"/>`
-    +labels;
-}
+    +dots+labels;
+}}
 drawRadar();
 
 // Timeline
