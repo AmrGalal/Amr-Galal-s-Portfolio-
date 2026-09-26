@@ -85,16 +85,23 @@
   .filters{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:34px;}
   .filter-btn{border:1px solid var(--border);background:transparent;color:var(--text-dim);padding:8px 16px;border-radius:20px;font-size:.82rem;cursor:pointer;}
   .filter-btn.active{background:var(--cyan);color:#04222b;border-color:var(--cyan);}
-  .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-  .proj-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
-  .proj-thumb{height:130px;background:linear-gradient(135deg,#1e293b,#0f172a);}
-  .proj-body{padding:16px;}
+  .proj-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;}
+  .proj-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;}
+  .proj-card:hover{transform:translateY(-5px);border-color:rgba(34,211,238,.45);box-shadow:0 18px 40px rgba(0,0,0,.22);}
+  .proj-thumb{height:220px;background:linear-gradient(135deg,#1e293b,#0f172a);overflow:hidden;position:relative;}
+  .proj-thumb::after{content:'View case study';position:absolute;right:14px;bottom:14px;background:rgba(10,14,23,.84);border:1px solid rgba(255,255,255,.08);color:#dbe7f3;padding:6px 10px;border-radius:7px;font-size:.68rem;opacity:0;transform:translateY(5px);transition:.2s ease;}
+  .proj-card:hover .proj-thumb::after{opacity:1;transform:none;}
+  .proj-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease;}
+  .proj-card:hover .proj-thumb img{transform:scale(1.035);}
+  .proj-body{padding:18px;}
+  .project-meta{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:8px;color:var(--text-dim);font-size:.72rem;}
+  .project-count{color:var(--teal);}
   .proj-body h4{font-size:.95rem;margin-bottom:6px;}
   .proj-body p{font-size:.8rem;color:var(--text-dim);margin-bottom:10px;}
   .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
   .tag{background:var(--bg-alt);border:1px solid var(--border);font-size:.68rem;padding:3px 8px;border-radius:6px;color:var(--text-dim);}
   .proj-links{display:flex;gap:16px;font-size:.78rem;color:var(--cyan);}
-  @media(max-width:820px){.proj-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:820px){.proj-grid{grid-template-columns:1fr;}}
   @media(max-width:560px){.proj-grid{grid-template-columns:1fr;}}
 
   /* GRID CARDS (education/certs) */
@@ -137,7 +144,7 @@
       <a href="#about">About</a><a href="#skills">Skills</a><a href="#experience">Experience</a>
       <a href="#projects">Projects</a><a href="#education">Education</a><a href="#contact">Contact</a>
     </div>
-    <button class="cta-btn">Get In Touch</button>
+    <a class="cta-btn" href="#contact">Get In Touch</a>
   </nav>
 </header>
 
@@ -186,7 +193,7 @@
   a messy dataset down, testing assumptions, and building toward a solution that's both simple
   and reliable.</p><br>
   <p>With <strong>5 years of experience</strong> in the call center industry as a
-  <strong>Senior Training and Development Specialist</strong>, I've been responsible for
+  <strong>Senior Training Specialist</strong>, I've been responsible for
   producing the company's performance reports — turning raw operational data into insights
   that shaped training decisions and improved team performance. This experience taught me how
   to translate numbers into actions that actually matter to a business, long before I formally
@@ -219,7 +226,7 @@
 <section id="projects">
   <div class="wrap">
     <h2>Featured <span>Projects</span></h2>
-    <p class="lead">Real projects with real datasets.</p>
+    <p class="lead">Selected analytics projects showing the workflow from raw data to business-ready insights.</p>
     <div class="filters" id="filters"></div>
     <div class="proj-grid" id="projGrid"></div>
   </div>
@@ -228,7 +235,7 @@
 <section id="education" style="background:var(--bg-alt);">
   <div class="wrap">
     <h2>Education</h2>
-    <p class="lead">Academic foundation and continuous learning.</p>
+    <p class="lead">Academic background supporting my analytical and problem-solving approach.</p>
     <div class="card-grid" id="eduGrid"></div>
   </div>
 </section>
@@ -290,26 +297,33 @@ const  skillsData = [
   {label:"Business Analysis",value:77}
 ];
 const timelineData = [
-  {title:"Data Analysis & BI Track",org:"DEPI (Digital Egypt Pioneers Initiative)",meta:"2026 · Egypt",
-   desc:"Practical training in data analysis and business intelligence, covering dashboarding, reporting, and data-driven decision making.",
+  {title:"Data Analysis & BI Track",org:"DEPI (Digital Egypt Pioneers Initiative)",meta:"2025 · Egypt",
+   desc:"Practical training in data analysis and business intelligence, covering dashboarding, reporting, data modeling, and data-driven decision making.",
    achievements:[
      "Built end-to-end BI dashboards from raw data to executive-ready reports",
      "Applied data modeling and DAX for accurate, scalable calculations",
      "Practiced translating business questions into analytical solutions"
    ]},
-  {title:"Data Analysis Fundamentals",org:"DataCamp",meta:"2025",
-   desc:"Foundational track covering data analysis concepts, data cleaning, and exploratory analysis.",
+  {title:"Microsoft Data Analyst",org:"Coursera · Microsoft",meta:"2025",
+   desc:"Professional learning focused on the Microsoft data analyst workflow, analytics tools, and practical data analysis skills.",
    achievements:[
-     "Cleaned and structured messy real-world datasets for analysis",
-     "Performed exploratory data analysis (EDA) to uncover patterns and trends",
-     "Wrote SQL queries to extract and aggregate data from relational databases"
+     "Strengthened practical data analysis and visualization skills",
+     "Worked with analytical workflows aligned with business reporting needs",
+     "Expanded knowledge of Microsoft-focused data analyst practices"
+   ]},
+  {title:"Data Analysis Fundamentals",org:"DataCamp",meta:"2025",
+   desc:"Foundational learning in data analysis concepts, data cleaning, exploratory analysis, and SQL.",
+   achievements:[
+     "Cleaned and structured datasets for analysis",
+     "Performed exploratory data analysis to uncover patterns and trends",
+     "Wrote SQL queries to extract and aggregate data"
    ]},
   {title:"Data Analyst Professional Certificate",org:"Udemy",meta:"2025",
-   desc:"Professional certificate covering the full data analysis workflow from raw data to actionable insights.",
+   desc:"Professional learning covering the data analysis workflow from raw data to actionable insights.",
    achievements:[
-     "Designed interactive Power BI dashboards for business reporting",
-     "Used Power Query to automate data cleaning and transformation steps",
-     "Delivered insights that support faster, evidence-based decisions"
+     "Designed interactive dashboards for business reporting",
+     "Used Power Query for data cleaning and transformation",
+     "Focused on presenting insights in a clear, decision-oriented format"
    ]}
 ];
 const filterCats = [
@@ -319,42 +333,41 @@ const filterCats = [
 ];
 
 const projectsData = [
-  {title:"Sales Superstore Dashboard",
-   desc:"Interactive Power BI dashboard analyzing Superstore sales performance, using Power Query for data cleaning and DAX for advanced calculations.",
-   tags:["Power BI","Power Query","DAX"],cats:["powerbi"],
+  {title:"Superstore Sales Analysis",
+   desc:"Interactive Power BI analysis of Superstore sales performance, from data preparation and modeling to executive reporting and profitability insights.",
+   tags:["Power BI","Power Query","DAX","Data Visualization"],cats:["powerbi"],
+   cover:"superstore-dashboard.png",
+   stageCount:9,
    report:[
-     {img:"Report.jpeg",caption:"Report overview: an overview of the Superstore analytical report."},
-     {img:"Data Cleaning.jpeg",caption:"Data Cleaning: preparing and transforming the dataset before analysis."},
-     {img:"Data Modeling.jpeg",caption:"Data Modeling: structuring the data model for analysis and reporting."},
-     {img:"Dashboard Page.jpeg",caption:"Dashboard Page: the main interactive Power BI dashboard."},
-     {img:"Executive Overview.jpeg",caption:"Executive Overview: high-level business performance analysis."},
-     {img:"Executive Overview 2.jpeg",caption:"Executive Overview 2: additional executive-level analysis."},
-     {img:"Trends & Growth Analysis.jpeg",caption:"Trends & Growth Analysis: analyzing performance trends and growth."},
-     {img:"Profitability & Product Analysis.jpeg",caption:"Profitability & Product Analysis: examining product and profitability performance."},
-     {img:"Returns & Quality Analysis.jpeg",caption:"Returns & Quality Analysis: reviewing returns and quality-related performance."},
-     {img:"Sales Team Performance.jpeg",caption:"Sales Team Performance: analyzing sales performance across the team."}
+     {img:"project1-stage1.png.jpeg",caption:"Project stage 1: initial dashboard and report setup."},
+     {img:"project1-stage2.png.jpeg",caption:"Project stage 2: preparing the source data for analysis."},
+     {img:"project1-stage3.png.jpeg",caption:"Project stage 3: cleaning and transforming the dataset."},
+     {img:"project1-stage4.png.jpeg",caption:"Project stage 4: building the analytical data model."},
+     {img:"project1-stage5.png.jpeg",caption:"Project stage 5: defining calculations and core KPIs."},
+     {img:"project1-stage6.png.jpeg",caption:"Project stage 6: developing the executive analysis view."},
+     {img:"project1-stage7.png.jpeg",caption:"Project stage 7: analyzing trends and growth patterns."},
+     {img:"project1-stage8.png.jpeg",caption:"Project stage 8: analyzing profitability and product performance."},
+     {img:"project1-stage9.png.jpeg",caption:"Project stage 9: reviewing returns, quality, and sales team performance."}
    ]},
-  {title:"Sales Analysis",
-
-   desc:"Sales analysis built entirely in Excel using PivotTables, PowerPivot, and Excel's data modeling tools.",
+  {title:"Sales Analysis in Excel",
+   desc:"Sales analysis built in Excel using PivotTables, PowerPivot, and data modeling to turn raw sales data into an interactive business report.",
    tags:["Excel","PowerPivot","PivotTables"],cats:["excel"],
+   cover:"project2-stage1.png.jpeg",
+   stageCount:3,
    report:[
-     {img:"project2-stage1.png",caption:"Raw Data: the original sales dataset."},
-     {img:"project2-stage2.png",caption:"PivotTables: summarizing sales by region, product, and time period."},
-     {img:"project2-stage3.png",caption:"PowerPivot Model: building relationships between tables for deeper analysis."},
-     {img:"project2-stage4.png",caption:"Final Dashboard: the finished Excel report."}
+     {img:"project2-stage1.png.jpeg",caption:"Project stage 1: starting with the source sales data and report structure."},
+     {img:"project2-stage2.png.jpeg",caption:"Project stage 2: analyzing the data with PivotTables and business summaries."},
+     {img:"project2-stage3.png.jpeg",caption:"Project stage 3: final analysis view and modeled reporting output."}
    ]}
 ];
 const eduData = [
-  {title:"Your Degree / Diploma",org:"University",meta:"2026 – Present · City",
-   points:["Key topic one","Key topic two","Key topic three"]},
-  {title:"Previous Degree",org:"University",meta:"2018 – 2022 · City",
-   points:["Key topic one","Key topic two"]}
+  {title:"Faculty of Law",org:"Helwan University",meta:"2018 – 2022 · Cairo, Egypt",
+   points:["Bachelor of Law"]}
 ];
 const certData = [
-  {icon:"🏅",title:"Certificate Name",org:"Issuer"},
-  {icon:"📘",title:"Certificate Name",org:"Issuer"},
-  {icon:"🎓",title:"Certificate Name",org:"Issuer"}
+  {icon:"📊",title:"DEPI Data Analyst",org:"Digital Egypt Pioneers Initiative · 2025"},
+  {icon:"📘",title:"Data Analyst",org:"DataCamp · Professional Learning"},
+  {icon:"🎓",title:"Microsoft Data Analyst",org:"Coursera · Microsoft"}
 ];
 
 /* ---------- REPORT MODAL ---------- */
@@ -363,7 +376,7 @@ function openReport(i){
   document.getElementById('reportTitle').textContent = p.title;
   document.getElementById('reportStages').innerHTML = p.report.map((stage,idx)=>`
     <div class="report-stage">
-      <img src="${stage.img}" alt="${p.title} - stage ${idx+1}">
+      <img src="${stage.img}" alt="${p.title} - stage ${idx+1}" loading="lazy" onclick="openImageViewer('${stage.img.replace(/'/g, "\\'")}', '${stage.caption.replace(/'/g, "\\'")}')">
       <p>${stage.caption}</p>
     </div>`).join('');
   document.getElementById('reportModal').classList.add('open');
@@ -376,6 +389,50 @@ document.getElementById('reportModal')?.addEventListener('click', function(e){
 });
 document.addEventListener('keydown', function(e){
   if(e.key === 'Escape') closeReport();
+});
+
+
+/* ---------- IMAGE VIEWER ---------- */
+let viewerScale=1, viewerX=0, viewerY=0, dragging=false, dragStartX=0, dragStartY=0;
+const viewer=document.getElementById('imageViewer');
+const viewerImg=document.getElementById('viewerImage');
+const viewerCaption=document.getElementById('viewerCaption');
+function updateViewer(){
+  viewerImg.style.transform=`translate(${viewerX}px,${viewerY}px) scale(${viewerScale})`;
+}
+function resetViewer(){viewerScale=1;viewerX=0;viewerY=0;updateViewer();}
+function zoomViewer(amount){viewerScale=Math.min(4,Math.max(.5,viewerScale+amount));updateViewer();}
+function openImageViewer(src,caption){
+  viewerImg.src=src;
+  viewerCaption.textContent=caption||'';
+  resetViewer();
+  viewer.classList.add('open');
+  document.body.classList.add('viewer-open');
+}
+function closeImageViewer(){
+  viewer.classList.remove('open');
+  document.body.classList.remove('viewer-open');
+  viewerImg.classList.remove('dragging');
+  dragging=false;
+}
+viewer?.addEventListener('click',e=>{if(e.target===viewer)closeImageViewer();});
+viewerImg?.addEventListener('wheel',e=>{e.preventDefault();zoomViewer(e.deltaY<0?.2:-.2);},{passive:false});
+viewerImg?.addEventListener('pointerdown',e=>{
+  dragging=true; dragStartX=e.clientX-viewerX; dragStartY=e.clientY-viewerY; viewerImg.setPointerCapture(e.pointerId); viewerImg.classList.add('dragging');
+});
+viewerImg?.addEventListener('pointermove',e=>{if(!dragging)return;viewerX=e.clientX-dragStartX;viewerY=e.clientY-dragStartY;updateViewer();});
+viewerImg?.addEventListener('pointerup',()=>{dragging=false;viewerImg.classList.remove('dragging');});
+viewerImg?.addEventListener('pointercancel',()=>{dragging=false;viewerImg.classList.remove('dragging');});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    if(viewer.classList.contains('open')) closeImageViewer();
+    else closeReport();
+  }
+  if(viewer.classList.contains('open')){
+    if(e.key==='+'){zoomViewer(.2);}
+    if(e.key==='-'){zoomViewer(-.2);}
+    if(e.key==='0'){resetViewer();}
+  }
 });
 
 /* ---------- RENDER (no need to edit below) ---------- */
@@ -436,15 +493,18 @@ document.getElementById('timeline').innerHTML = timelineData.map((t,i)=>`
 function renderProjects(filter){
   const grid=document.getElementById('projGrid');
   const list = filter==='all' ? projectsData : projectsData.filter(p=>p.cats.includes(filter));
-  grid.innerHTML = list.map((p,i)=>`
-    <div class="proj-card">
-      <div class="proj-thumb"></div>
+  grid.innerHTML = list.map((p)=>`
+    <article class="proj-card">
+      <div class="proj-thumb">
+        <img src="${p.cover}" alt="${p.title} cover image" loading="lazy">
+      </div>
       <div class="proj-body">
+        <div class="project-meta"><span>${p.cats.includes('powerbi')?'Power BI':'Excel'} Project</span><span class="project-count">${p.stageCount} stages</span></div>
         <h4>${p.title}</h4><p>${p.desc}</p>
         <div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
-        <div class="proj-links"><a href="#" onclick="openReport(${projectsData.indexOf(p)});return false;">▤ View Report</a></div>
+        <div class="proj-links"><a href="#" onclick="openReport(${projectsData.indexOf(p)});return false;">▤ View Case Study →</a></div>
       </div>
-    </div>`).join('');
+    </article>`).join('');
 }
 document.getElementById('filters').innerHTML = filterCats.map((f,i)=>
   `<button class="filter-btn ${i===0?'active':''}" data-id="${f.id}">${f.label}</button>`).join('');
@@ -500,5 +560,18 @@ animate();
     <h3 id="reportTitle"></h3>
     <div id="reportStages"></div>
   </div>
-</div></body>
+</div>
+<div id="imageViewer" class="image-viewer" aria-hidden="true">
+  <div class="viewer-frame">
+    <div class="viewer-tools" aria-label="Image zoom controls">
+      <button type="button" onclick="zoomViewer(.25)" title="Zoom in">+</button>
+      <button type="button" onclick="zoomViewer(-.25)" title="Zoom out">−</button>
+      <button type="button" onclick="resetViewer()" title="Reset zoom">100%</button>
+    </div>
+    <button class="viewer-close" type="button" onclick="closeImageViewer()" aria-label="Close image viewer">✕</button>
+    <img id="viewerImage" class="viewer-image" alt="Expanded project image">
+    <div id="viewerCaption" class="viewer-caption"></div>
+  </div>
+</div>
+</body>
 </html>
