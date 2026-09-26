@@ -163,13 +163,19 @@
 <section id="about">
   <div class="wrap">
     <h2>About <span>Me</span></h2>
-    <p class="lead">Short one-line tagline about your focus area.</p>
+    <p class="lead">Turning data into meaningful business decisions</p>
     <div class="about-grid">
       <div class="about-text">
-        <p>Write your background story here: your learning journey, what field you specialize in
-        (e.g. <strong>Data Analysis and Business Intelligence</strong>), and the tools you use.</p><br>
-        <p>Add a second paragraph about what motivates you and how you approach problems.</p>
-      </div>
+  <p>Turning Data Into Decisions.</p><br>
+  <p>I'm a Data Analyst focused on transforming raw data into meaningful insights that help
+  businesses understand performance, identify opportunities, and make better decisions.
+  My core toolkit includes <strong>Excel, Power BI, SQL, Power Query, DAX</strong>, and data
+  visualization, with hands-on experience building analytical reports and interactive dashboards.</p><br>
+  <p>I approach every dataset with three questions:<br>
+  <strong>What happened? → Why did it happen? → What can we do next?</strong></p><br>
+  <p>Focus: Data Analysis | Business Intelligence | Power BI | SQL | Excel | Data Visualization</p><br>
+  <p>[هنا هنحط فقرة بديلة بعد ما تردّ على السؤال اللي فوق]</p>
+</div>
       <div class="info-cards" id="infoCards"></div>
     </div>
   </div>
@@ -257,24 +263,24 @@ const infoCardsData = [
   {icon:"📉",title:"Data Visualization",desc:"Communicating data clearly and effectively."},
   {icon:"🤝",title:"Collaboration",desc:"Working well across cross-functional teams."}
 ];
-const skillsData = [
-  {label:"Power BI",value:9},{label:"Statistics",value:7},{label:"Pandas",value:8},
-  {label:"Excel",value:8},{label:"Python",value:8},{label:"Tableau",value:7},
-  {label:"DAX",value:7},{label:"NumPy",value:7},{label:"Power Query",value:7},
-  {label:"Looker Studio",value:6},{label:"Data Visualization",value:8},
-  {label:"SQL",value:9},{label:"ETL",value:6},{label:"Data Cleaning",value:8},
-  {label:"Business Analysis",value:7}
+const  skillsData = [
+  {label:"Power BI",value:85},{label:"Statistics",value:70},{label:"Pandas",value:72},
+  {label:"Excel",value:92},{label:"Python",value:85},{label:"Tableau",value:84},
+  {label:"DAX",value:83},{label:"NumPy",value:70},{label:"Power Query",value:88},
+  {label:"Looker Studio",value:68},{label:"Data Visualization",value:82},
+  {label:"SQL",value:88},{label:"ETL",value:78},{label:"Data Cleaning",value:84},
+  {label:"Business Analysis",value:77}
 ];
 const timelineData = [
-  {title:"Your Current Role",org:"Company / Institute",meta:"Jan 2026 – Present · City",
-   desc:"One-line summary of what you focus on in this role.",
-   achievements:["Achievement one","Achievement two","Skill used: SQL, Power BI"]},
-  {title:"Previous Role / Training",org:"Organization",meta:"Feb 2025 – Aug 2025 · City",
-   desc:"Summary of what you learned or delivered.",
-   achievements:["Achievement one","Achievement two"]},
-  {title:"Certification / Bootcamp",org:"Provider",meta:"Nov 2024 – May 2025 · City",
-   desc:"Summary of the program and what it covered.",
-   achievements:["Skill one","Skill two"]}
+  {title:"Data Analysis & BI Track",org:"DEPI (Digital Egypt Pioneers Initiative)",meta:"2026 · Egypt",
+   desc:"Practical training in data analysis and business intelligence, covering dashboarding, reporting, and data-driven decision making.",
+   achievements:["Data analysis fundamentals","Business Intelligence tools","Dashboard building"]},
+  {title:"Data Analysis Fundamentals",org:"DataCamp",meta:"2025",
+   desc:"Foundational track covering data analysis concepts, data cleaning, and exploratory analysis.",
+   achievements:["Data cleaning & wrangling","Exploratory data analysis","SQL fundamentals"]},
+  {title:"Data Analyst Professional Certificate",org:"Udemy",meta:"2025",
+   desc:"Professional certificate covering the full data analysis workflow from raw data to actionable insights.",
+   achievements:["Excel & Power BI","SQL querying","Data visualization"]}
 ];
 const projectsData = [
   {title:"Project Title One",desc:"Short description of the problem and what the dashboard/analysis delivers.",
@@ -334,7 +340,7 @@ function drawRadar(){
   skillsData.forEach((s,i)=>{
     const a=angle(i);
     axes+=`<line x1="${cx}" y1="${cy}" x2="${cx+Math.cos(a)*R}" y2="${cy+Math.sin(a)*R}" stroke="#1e293b"/>`;
-    const val=R*s.value/10;
+    const val=R*s.value/100;
     points.push(`${cx+Math.cos(a)*val},${cy+Math.sin(a)*val}`);
     const lx=cx+Math.cos(a)*(R+34), ly=cy+Math.sin(a)*(R+34);
     labels+=`<text x="${lx}" y="${ly}" fill="#8b98ad" font-size="10" text-anchor="middle" dominant-baseline="middle">${s.label}</text>`;
