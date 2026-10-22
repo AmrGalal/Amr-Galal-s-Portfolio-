@@ -121,7 +121,13 @@
   @media(max-width:760px){.about-grid{grid-template-columns:1fr;}}
 
   /* SKILLS RADAR */
-  .radar-wrap{display:flex;justify-content:center;}
+ #radar {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  overflow: visible;
+}
   .radar-fill{stroke-dasharray:1400;stroke-dashoffset:1400;animation:radarDraw 1.6s ease forwards;}
   @keyframes radarDraw{to{stroke-dashoffset:0;}}
 
@@ -499,109 +505,199 @@ const filterCats = [
   {id:"excel",label:"Excel"}
 ];
 
-/* Projects: toolTags = software/tools used, conceptTags = the analytical concepts applied.
-   Shown as two separate rows, like the reference design. */
+
+/* Projects: toolTags and conceptTags are displayed in separate rows. */
 const projectsData = [
-  {title:"Superstore Sales Analysis",
-   desc:"Interactive Power BI analysis of Superstore sales performance, from data preparation and modeling to executive reporting and profitability insights.",
-   toolTags:["Power BI","Power Query","DAX"],
-   conceptTags:["Data Modeling","Business Intelligence","Data Visualization","Executive Reporting"],
-   cats:["powerbi"],
-   cover:"superstore-dashboard.png",
-   stageCount:10,
-   report:[
-     {img:"project1-stage1.png.jpeg",caption:"Project stage 1: initial dashboard and report setup."},
-     {img:"project1-stage2.png.jpeg",caption:"Project stage 2: Report setup."},
-     {img:"project1-stage3.png.jpeg",caption:"Project stage 2: preparing the source data for analysis."},
-     {img:"Data Modeling.jpeg",caption:"Project stage 2: Data Modeling ."},
-     {img:"project1-stage4.png.jpeg",caption:"Project stage 3: Executive Overview."},
-     {img:"project1-stage5.png.jpeg",caption:"Project stage 4: Executive Overview."},
-     {img:"project1-stage6.png.jpeg",caption:"Project stage 5: Trends & Growth Analysis."},
-     {img:"project1-stage7.png.jpeg",caption:"Project stage 6: Profitability & product analysis view."},
-     {img:"project1-stage8.png.jpeg",caption:"Project stage 7: Returns Analysis."},
-     {img:"project1-stage9.png.jpeg",caption:"Project stage 8: Sales Team Analysis."},
-   ]},
-  {title:"Sales Analysis in Excel",
-   desc:"Sales analysis built in Excel using PivotTables, PowerPivot, and data modeling to turn raw sales data into an interactive business report.",
-   toolTags:["Excel","PowerPivot","PivotTables"],
-   conceptTags:["Data Analysis","Business Reporting"],
-   cats:["excel"],
-   cover:"project2-stage1.png.jpeg",
-   stageCount:3,
-   report:[
-     {img:"project2-stage1.png.jpeg",caption:"Project stage 1: starting with the source sales data and report structure."},
-     {img:"project2-stage2.png.jpeg",caption:"Project stage 2: analyzing the data with PivotTables and business summaries."},
-     {img:"project2-stage3.png.jpeg",caption:"Project stage 3: final analysis view and modeled reporting output."}
-   ]}
+  {
+    title: "Superstore Sales Analysis",
+    desc: "Interactive Power BI analysis of Superstore sales performance, covering data preparation, data modeling, executive reporting, sales trends, and profitability insights.",
+    toolTags: ["Power BI", "Power Query", "DAX"],
+    conceptTags: [
+      "Data Modeling",
+      "Business Intelligence",
+      "Data Visualization",
+      "Executive Reporting"
+    ],
+    cats: ["powerbi"],
+    cover: "superstore-dashboard.png",
+    stageCount: 10,
+    report: [
+      {
+        img: "project1-stage1.png.jpeg",
+        caption: "Stage 1: Initial dashboard and report setup."
+      },
+      {
+        img: "project1-stage2.png.jpeg",
+        caption: "Stage 2: Report structure and visual layout."
+      },
+      {
+        img: "project1-stage3.png.jpeg",
+        caption: "Stage 3: Preparing the source data for analysis."
+      },
+      {
+        img: "Data Modeling.jpeg",
+        caption: "Stage 4: Data modeling and relationships."
+      },
+      {
+        img: "project1-stage4.png.jpeg",
+        caption: "Stage 5: Executive overview."
+      },
+      {
+        img: "project1-stage5.png.jpeg",
+        caption: "Stage 6: Executive performance analysis."
+      },
+      {
+        img: "project1-stage6.png.jpeg",
+        caption: "Stage 7: Sales trends and growth analysis."
+      },
+      {
+        img: "project1-stage7.png.jpeg",
+        caption: "Stage 8: Profitability and product analysis."
+      },
+      {
+        img: "project1-stage8.png.jpeg",
+        caption: "Stage 9: Returns analysis."
+      },
+      {
+        img: "project1-stage9.png.jpeg",
+        caption: "Stage 10: Sales team analysis."
+      }
+    ]
+  },
+
+  {
+    title: "Country Data Comparison Analysis",
+    desc: "Interactive Power BI report comparing country-level indicators, with analysis of health, social development, and economic performance.",
+    toolTags: ["Power BI", "Power Query", "DAX"],
+    conceptTags: [
+      "Data Modeling",
+      "Business Intelligence",
+      "Comparative Analysis",
+      "Data Visualization",
+      "KPI Reporting"
+    ],
+    cats: ["powerbi"],
+    cover: "Country Data Comparison Analysis.png",
+    stageCount: 9,
+    report: [
+      {
+        img: "project3-stage1.png.jpeg",
+        caption: "Stage 1: Initial dashboard and report setup."
+      },
+      {
+        img: "Picture13 Data .png",
+        caption: "Stage 2: Preparing the source data for analysis."
+      },
+      {
+        img: "Project3 Data Modelpng.png",
+        caption: "Stage 3: Data model and relationships."
+      },
+      {
+        img: "project3-stage2.png.png",
+        caption: "Stage 4: Executive overview."
+      },
+      {
+        img: "project3-stage3.png.png",
+        caption: "Stage 5: Health and social development analysis."
+      },
+      {
+        img: "project3-stage4.png",
+        caption: "Stage 6: Health and social development tooltip."
+      },
+      {
+        img: "project1-stage5.png.jpeg",
+        caption: "Stage 7: Economic performance analysis."
+      },
+      {
+        img: "project3-stage6.png",
+        caption: "Stage 8: Country details."
+      },
+      {
+        img: "project3-stage7.png",
+        caption: "Stage 9: Interactive tooltip."
+      }
+    ]
+  },
+
+  {
+    title: "Sales Analysis in Excel",
+    desc: "Sales analysis built in Excel using PivotTables, PowerPivot, and data modeling to transform raw sales data into an interactive business report.",
+    toolTags: ["Excel", "PowerPivot", "PivotTables"],
+    conceptTags: [
+      "Data Analysis",
+      "Data Modeling",
+      "Business Reporting"
+    ],
+    cats: ["excel"],
+    cover: "project2-stage1.png.jpeg",
+    stageCount: 3,
+    report: [
+      {
+        img: "project2-stage1.png.jpeg",
+        caption: "Stage 1: Source sales data and report structure."
+      },
+      {
+        img: "project2-stage2.png.jpeg",
+        caption: "Stage 2: Data analysis using PivotTables and business summaries."
+      },
+      {
+        img: "project2-stage3.png.jpeg",
+        caption: "Stage 3: Final analysis and reporting output."
+      }
+    ]
+  }
 ];
 
-/* Education: real background + transferable skills framed for a data role.
-   Add more entries the same way if you have another degree/diploma. */
+
+/* Education */
 const eduData = [
-  {title:"Bachelor of Law",org:"Helwan University",meta:"2018 – 2022 · Cairo, Egypt",
-   points:[
-     "Legal research and structured, evidence-based analytical writing",
-     "Critical thinking and argument-building from complex source material",
-     "Close attention to detail when reviewing dense documents",
-     "A structured, evidence-driven mindset that carried over directly into data analysis"
-   ]}
-];
-const projectsData = [
-  {title:"Country Data Comparison Analysis",
-   desc:"Interactive Power BI analysis of Country Data Comparison Analysis",
-   toolTags:["Power BI","Power Query","DAX"],
-   conceptTags:["Data Modeling","Business Intelligence","Data Visualization","Executive Reporting"],
-   cats:["powerbi"],
-   cover:"Country Data Comparison Analysis.png",
-   stageCount:7,
-   report:[
-     {img:"project3-stage1.png.jpeg",caption:"Project stage 1: initial dashboard and report setup."},
-     {img:"Picture13 Data .png",caption:"Project stage 2: preparing the source data for analysis."},
-     {img:"Project3 Data Modelpng.png",caption:"Project stage 3: Data Modeling ."},
-     {img:"project3-stage2.png.png",caption:"Project stage 4: Executive Overview."},
-     {img:"project3-stage3.png.png",caption:"Project stage 5: Analysis for Health & Social Development."},
-     {img:"project3-stage4.png",caption:"Project stage 6: nalysis for Health & Social Development :Tooltip."},
-     {img:"project1-stage5.png.jpeg",caption:"Project stage 7: Economic Performance."},
-     {img:"project3-stage6.png",caption:"Project stage 8: Country Details."},
-     {img:"project3-stage7.png",caption:"Project stage 9: Tooltip."},
-   ]},
-  {title:"Sales Analysis in Excel",
-   desc:"Sales analysis built in Excel using PivotTables, PowerPivot, and data modeling to turn raw sales data into an interactive business report.",
-   toolTags:["Excel","PowerPivot","PivotTables"],
-   conceptTags:["Data Analysis","Business Reporting"],
-   cats:["excel"],
-   cover:"project2-stage1.png.jpeg",
-   stageCount:3,
-   report:[
-     {img:"project2-stage1.png.jpeg",caption:"Project stage 1: starting with the source sales data and report structure."},
-     {img:"project2-stage2.png.jpeg",caption:"Project stage 2: analyzing the data with PivotTables and business summaries."},
-     {img:"project2-stage3.png.jpeg",caption:"Project stage 3: final analysis view and modeled reporting output."}
-   ]}
+  {
+    title: "Bachelor of Law",
+    org: "Helwan University",
+    meta: "2018 – 2022 · Cairo, Egypt",
+    points: [
+      "Legal research and evidence-based analytical writing",
+      "Critical thinking and structured problem-solving",
+      "Attention to detail when reviewing complex documents",
+      "Applying a structured, evidence-based approach to analysis"
+    ]
+  }
 ];
 
-/* Certifications: put your real certificate image files in the same folder,
-   named exactly as below (or edit the "img" values to match your file names). */
+
+/* Certifications */
 const certData = [
-  {img:"cert-depi.jpg",title:"Data Analyst Track",org:"DEPI · Digital Egypt Pioneers Initiative · 2026",
-   points:[
-     "Built dashboards and reports across the full BI workflow",
-     "Practiced business-focused data modeling and DAX",
-     "Worked on real analytical case studies"
-   ]},
-  {img:"cert-datacamp.jpg",title:"Data Analyst Career Track",org:"DataCamp",
-   points:[
-     "Covered data cleaning, EDA, and SQL fundamentals",
-     "Practiced statistical thinking for analysis",
-     "Built a foundation in Python for data work"
-   ]},
-  {img:"cert-microsoft.jpg",title:"Microsoft Data Analyst",org:"Coursera · Microsoft",
-   points:[
-     "Learned the Microsoft data analyst workflow end-to-end",
-     "Practiced Power BI reporting aligned with Microsoft's toolset",
-     "Strengthened business-focused analytical thinking"
-   ]}
+  {
+    img: "cert-depi.jpg",
+    title: "Data Analyst Track",
+    org: "DEPI · Digital Egypt Pioneers Initiative · 2026",
+    points: [
+      "Developed dashboards and reports using BI tools",
+      "Practiced data modeling and DAX",
+      "Worked on analytical case studies"
+    ]
+  },
+  {
+    img: "cert-datacamp.jpg",
+    title: "Data Analyst Career Track",
+    org: "DataCamp",
+    points: [
+      "Practiced data cleaning and exploratory data analysis",
+      "Studied SQL fundamentals and statistical concepts",
+      "Built foundational Python skills for data analysis"
+    ]
+  },
+  {
+    img: "cert-microsoft.jpg",
+    title: "Microsoft Data Analyst",
+    org: "Coursera · Microsoft",
+    points: [
+      "Studied data analysis workflows and reporting",
+      "Practiced Power BI data visualization",
+      "Developed business-focused analytical skills"
+    ]
+  }
 ];
-
 /* ---------- REPORT MODAL ---------- */
 function openReport(i){
   const p = projectsData[i];
@@ -677,7 +773,7 @@ function typeLoop(){
 }
 typeLoop();
 animateNumber(document.getElementById('statYears'),5,'+');
-animateNumber(document.getElementById('statProjects'),2,'+');
+animateNumber(document.getElementById('statProjects'),3,'+');
 animateNumber(document.getElementById('statTools'),15,'+');
 
 // Cursor-follow glow in hero
